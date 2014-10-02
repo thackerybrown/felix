@@ -2,7 +2,7 @@ function k = getKeyboardNumber(deviceName)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Given the name of device (e.g., Curtis, Recca, 3T), 
-% determine keyboard number based on productID, vendorID, or version number
+% determine keyboard number based on product/vendor ID
 %
 % Requires PsychToolbox
 %
@@ -34,22 +34,22 @@ k = 0;
 for n = 1:length(d)
     if strcmp(d(n).usageName,'Keyboard')
 		if exist('version_num', 'var')
-            if d(n).version==version_num
+			if d(n).version==version_num
 				k = n;
-        		break;
+        		break
             end
-        elseif exist('vendorID', 'var')
+        else if exist('vendorID', 'var')
         	if d(n).vendorID==vendorID
 				k = n;
-        		break;
+        		break
             end
-        elseif exist('productID', 'var')
-            if d(n).productID==productID
+        else if exist('productID', 'var')
+        	if d(n).productID==productID
 				k = n;
-        		break;	
+        		break		
             end
         end
-    end
+    end 
 end
 
 %% Print error if nothing matches
