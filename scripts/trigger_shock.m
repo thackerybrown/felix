@@ -24,21 +24,23 @@ try
     
     % Get a serial port    
     try
-        % don't run this sentence twice otherwise you might have some problems...
+        % don't run this line twice otherwise you might have some problems...
+%         sp = serial('/dev/tty.usbmodem1411','BaudRate',57600);
         sp = serial('/dev/tty.usbmodem1421','BaudRate',57600);
     catch err
         disp(err)
         return
     end
     
+    set(sp, 'Terminator', 'CR'); % change the terminator property of the serial port to make it faster
     
     % open the serial port
     fclose(sp); % to avoid error
     fopen(sp);
-    WaitSecs(1); % requires waiting 1 s after opening for communication
+    WaitSecs(2); % requires waiting 1 s after opening for communication
     
-    fprintf(sp, 't'); % send pulse to trigger shock device
-%     sprintf('shocking')
+%     fprintf(sp, 't'); % send pulse to trigger shock device
+    fprintf(sp, 't\r'); % send pulse to trigger shock device
     time0 = GetSecs;  % get current time
     
     
@@ -46,16 +48,17 @@ try
     % if you disconnect arduino before closing the port, matlab will be shut
     % down suddenly.
     fclose(sp);
-%     delete(sp);
-%     clear sp
+    delete(sp);
+    clear sp
+
     
 catch err
     
     disp('Error occurs.')
     disp(err.message);
     time0 = nan;
-    %
 end
+
 err = []
 
 end % function

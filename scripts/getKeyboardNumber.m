@@ -14,6 +14,10 @@ function k = getKeyboardNumber(deviceName)
 switch deviceName
     case 'curtis'
 		productID = 594;
+    case 'ari'
+		version_num = 537;    
+    case 'sgagnon-laptop'
+		version_num = 548;   
 	case 'recca'
 		version_num = 112;
 		productID = 594;
@@ -23,8 +27,8 @@ switch deviceName
 		vendorID = 1523;
 	case '3T'
 		productID = 612;
-    case 'sgagnon-desktop'
-        version_num = 116;
+	case 'sgagnon-desktop'
+		version_num = 116;
 end
 
 %% Figure out device's keyboard number
