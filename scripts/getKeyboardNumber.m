@@ -12,9 +12,9 @@ function k = getKeyboardNumber(deviceName)
 
 %% Determine product ID based on device
 switch deviceName
-    case 'curtis'
+    case 'Curtis'
 		productID = 594;
-    case 'ari'
+    case 'Ari'
 		version_num = 537;    
     case 'sgagnon-laptop'
 		version_num = 548;   
@@ -27,7 +27,7 @@ switch deviceName
 		vendorID = 1523;
 	case '3T'
 		productID = 612;
-	case 'sgagnon-desktop'
+	case 'sgagnon-desktop.stanford.edu'
 		version_num = 116;
 end
 
