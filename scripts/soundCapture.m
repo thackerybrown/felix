@@ -37,35 +37,7 @@ function recordedaudio=soundCapture(pahandle, wavfilename, voicetrigger, maxsecs
 % Running on PTB-3? Abort otherwise.
 AssertOpenGL;
 
-% % Filename provided?
-% if nargin < 1
-%     wavfilename = ('yula.wav');
-% end
-% 
-% if nargin < 2
-%     voicetrigger = [];
-% end
-% 
-% if isempty(voicetrigger)
-%     voicetrigger = 0;
-% end
-% 
-% if nargin < 3
-%     maxsecs = [];
-% end
-% 
-% if nargin < 4
-%     prevaudio = [];
-% end
-% 
-% if isempty(maxsecs)
-%     maxsecs = inf;
-% end
 
-
-% Wait for release of all keys on keyboard:
-% %while KbCheck; end;
-% 
 % % Perform basic initialization of the sound driver:
 % InitializePsychSound;
 % 
@@ -86,8 +58,6 @@ PsychPortAudio('GetAudioData', pahandle, 5);
 %when=0] [, waitForStart=0] [, stopTime=inf]);
 PsychPortAudio('Start', pahandle, 1, 0, 1);
 
-%fprintf('Audio capture started, press any key for about 1 second to quit.\n');
-
 % Want to start via VoiceTrigger?
 if voicetrigger > 0
     % Yes. Fetch audio data and check against threshold:
@@ -96,7 +66,7 @@ if voicetrigger > 0
     % Repeat as long as below trigger-threshold:
     while level < voicetrigger
         % Fetch current audiodata:
-        [audiodata offset overflow tCaptureStart] = PsychPortAudio('GetAudioData', pahandle);
+        [audiodata, offset, ~, tCaptureStart] = PsychPortAudio('GetAudioData', pahandle);
 
         % Compute maximum signal amplitude in this chunk of data:
         if ~isempty(audiodata)
@@ -173,26 +143,8 @@ audiodata = PsychPortAudio('GetAudioData', pahandle);
 % Attach it to our full sound vector:
 recordedaudio = [recordedaudio audiodata];
 
-% Close the audio device:
-%PsychPortAudio('Close', pahandle);
 
-% Replay recorded data: Open default device for output, push recorded sound
-% data into its output buffer:
-%pahandle = PsychPortAudio('Open', [], 1, 0, 44100, 2);
-%PsychPortAudio('FillBuffer', pahandle, recordedaudio);
-
-% Start playback immediately, wait for start, play once:
-%PsychPortAudio('Start', pahandle, 1, 0, 1);
-
-% Wait for end of playback, then stop engine:
-%PsychPortAudio('Stop', pahandle, 1);
-
-% Close the audio device:
-% PsychPortAudio('Close', pahandle);
-
-% Shall we store recorded sound to wavfile?
-%if ~isempty('yula.wav')
-    wavwrite(transpose(recordedaudio), 44100, 16, wavfilename)
+wavwrite(transpose(recordedaudio), 44100, 16, wavfilename);
 end
 
     
