@@ -16,7 +16,7 @@ switch deviceName
 		productID = 594;
     case 'Ari'
 		version_num = 537;    
-    case 'sgagnon-laptop'
+    case 'DN5246gh.SUNet'
 		version_num = 548;   
 	case 'recca'
 		version_num = 112;
