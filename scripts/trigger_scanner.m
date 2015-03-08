@@ -1,4 +1,4 @@
-% [time0,sp] = trigger_scanner(sp)
+% [time0,sp,status,err] = trigger_scanner(sp)
 % --------------------------------
 % usage: this script opens a serial port, sends out a pulse signal, then
 % closes the serial port
