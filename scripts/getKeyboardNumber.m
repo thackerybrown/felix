@@ -29,6 +29,8 @@ switch deviceName
 		productID = 612;
 	case 'sgagnon-desktop.stanford.edu'
 		version_num = 116;
+    otherwise
+        vendorID = 1452;    
 end
 
 %% Figure out device's keyboard number
