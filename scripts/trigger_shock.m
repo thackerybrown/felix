@@ -49,7 +49,7 @@ try
     % down suddenly.
     fclose(sp);
     delete(sp);
-    clear sp
+%     clear sp
 
     
 catch err
