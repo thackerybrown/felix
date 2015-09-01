@@ -25,8 +25,8 @@ try
     % Get a serial port    
     try
         % don't run this line twice otherwise you might have some problems...
-%         sp = serial('/dev/tty.usbmodem1411','BaudRate',57600);
-        sp = serial('/dev/tty.usbmodem1421','BaudRate',57600);
+        sp = serial('/dev/tty.usbmodem1411','BaudRate',57600);
+%         sp = serial('/dev/tty.usbmodem1421','BaudRate',57600);
     catch err
         disp(err)
         return
